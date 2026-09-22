@@ -3,6 +3,8 @@ What is RippleNav?
 
 RippleNav is a software-based raw attention detector designed to measure and navigate conscious influences and energetic memory ripples.
 
+Currently at https://access.ripplenav.org
+
 Describing a vast subject like RippleNav in a few words is quite daunting and I have had to attempt that many times when filling in various web forms for site submissions or promotion and so on.
 
 None of those paragraph-or-two submissions can ever hope to do it justice.
