@@ -1,0 +1,207 @@
+/* style.css — the palette and typography every public page shares.
+   ONE COPY, substituted into each page by build-landing.sh at the <!--STYLE--> marker. Three
+   pages with three copies of these rules is three pages that drift; the build refuses to run if
+   a page has no marker, so a new page cannot quietly do its own thing. */
+
+  :root {
+    --ink: #e9edf2;
+    --dim: #aab4c0;
+    --faint: #7f8b99;
+    --paper: #0c1016;
+    --panel: #131922;
+    --rule: #212a35;
+    --accent: #6aa9ff;
+    --accent-ink: #071019;
+    --brand: #c7a9ff;
+    --measure: 44rem;
+    --url:#4aa7d9;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: var(--measure); margin: 0 auto; padding: 0 1.5rem; }
+
+  /* The benefit block: an aside beside the hero, not a second headline. One accent rule, no icon,
+     no card — it is a paragraph a stranger should read before the examples. */
+  .benefit {
+    margin: 1.75rem 0 0;
+    padding: 0 0 0 1rem;
+    border-left: 2px solid var(--accent);
+  }
+  .benefit p { margin: 0 0 .6rem; color: var(--dim); }
+  .benefit p:last-child { margin-bottom: 0; }
+  .benefit strong { color: var(--ink); }
+
+  /* The hero's glow: depth without a second colour. Pointer-events off, behind everything. */
+  .glow {
+    position: absolute; inset: 0 0 auto 0; height: 30rem;
+    background: radial-gradient(38rem 18rem at 22% -12%, rgba(106,169,255,0.14), transparent 70%);
+    pointer-events: none;
+  }
+  /* NO ACCENT TICK ON THE HEADER RULE. There used to be an 80px blue segment drawn on the left of
+     this border (`header.site::after`, 5rem wide, --accent). It was deliberate when the header had
+     nothing accent-coloured near it, but the first thing under the header is the eyebrow, which is
+     already --accent: two blue marks a line apart read as a stray line rather than a signature. The
+     header keeps its plain 1px rule. If the short segment is ever wanted back, it was those four
+     declarations plus `position: relative` on the header. */
+  header.site { border-bottom: 1px solid var(--rule); }
+  header.site .wrap {
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    padding: 1.05rem 1.5rem;
+  }
+  .wordmark { font-size: 0.95rem; letter-spacing: 0.015em; }
+  .wordmark strong { font-weight: 650; color: var(--brand); }
+  .wordmark span { color: var(--faint); }
+
+  .button {
+    display: inline-block; padding: 0.5rem 1rem; border-radius: 6px;
+    background: var(--accent); color: var(--accent-ink); font-weight: 600; font-size: 0.9rem;
+    text-decoration: none; white-space: nowrap;
+  }
+  .button:hover { filter: brightness(1.08); }
+  .button.quiet {
+    background: transparent; color: var(--ink); border: 1px solid var(--rule); font-weight: 500;
+  }
+  .button.quiet:hover { border-color: var(--dim); }
+
+  main { position: relative; padding: 3.5rem 0 5rem; }
+  section { margin: 0 0 3.5rem; }
+  section:last-child { margin-bottom: 0; }
+
+  .eyebrow {
+    font-size: 1.25rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--accent); margin: 0 0 1rem;
+  }
+  h1 {
+    font-family: ui-serif, Georgia, "Times New Roman", serif;
+    font-weight: 400; font-size: clamp(1.9rem, 5.2vw, 2.7rem); line-height: 1.2;
+    letter-spacing: -0.01em; margin: 0 0 1.1rem; max-width: 34rem;
+  }
+  h2 {
+    font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--dim); font-weight: 650; margin: 0 0 1.1rem;
+  }
+  p { margin: 0 0 1rem; }
+  .lede { font-size: 1.12rem; }
+  .dim { color: var(--dim); }
+  .tight { max-width: 38rem; }
+
+  a {
+    color: var(--url); font-weight: 650; margin: 0 0 1.1rem;
+  }
+
+  pre {
+    margin: 0; padding: 1rem 1.15rem; overflow-x: auto;
+    background: var(--panel); border: 1px solid var(--rule); border-left: 3px solid var(--accent);
+    border-radius: 4px; font-size: 0.92rem; line-height: 1.6;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--ink);
+  }
+  pre .q { color: var(--dim); }
+  pre .x { color: var(--accent); }
+  .caption { color: var(--faint); font-size: 0.85rem; margin: 0.6rem 0 0; }
+
+  ul.plain { list-style: none; margin: 0; padding: 0; }
+  ul.plain li { position: relative; padding: 0 0 0.75rem 1.4rem; color: var(--dim); }
+  ul.plain li::before {
+    content: ""; position: absolute; left: 0; top: 0.62em;
+    width: 6px; height: 6px; border-radius: 50%; background: var(--accent); opacity: 0.85;
+  }
+  ul.plain strong { color: var(--ink); font-weight: 650; }
+
+  dl.tools { margin: 0; border-top: 1px solid var(--rule); }
+  dl.tools div { display: flex; gap: 1rem; padding: 0.8rem 0; border-bottom: 1px solid var(--rule); }
+  dl.tools dt {
+    flex: 0 0 6.2rem; font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.9rem; color: var(--accent);
+  }
+  dl.tools dd { margin: 0; color: var(--dim); font-size: 0.95rem; }
+
+  .card {
+    background: var(--panel); border: 1px solid var(--rule); border-radius: 6px;
+    padding: 1.35rem 1.4rem;
+  }
+  .card h2 { margin-bottom: 0.9rem; }
+  .card p:last-child { margin-bottom: 0; }
+  .actions { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1.2rem; }
+
+  footer.site {
+    border-top: 1px solid var(--rule); padding: 1.5rem 0 2.5rem;
+    color: var(--faint); font-size: 0.85rem;
+  }
+  footer.site .wrap { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+  footer.site a { color: var(--dim); text-decoration: none; }
+  footer.site a:hover { color: var(--accent); }
+
+/* The top navigation: the wordmark is the way home, two plain links, and the one button. Links stay
+   quiet so the accent still means "this is the thing to do". */
+a.wordmark { text-decoration: none; color: inherit; }
+a.wordmark:hover strong { color: var(--brand); filter: brightness(1.12); }
+nav.top { display: flex; align-items: center; gap: 1.1rem; }
+nav.top > a:not(.button) {
+  color: var(--dim); text-decoration: none; font-size: 0.9rem;
+}
+nav.top > a:not(.button):hover { color: var(--ink); }
+@media (max-width: 30rem) { nav.top { gap: 0.7rem; } nav.top > a:not(.button) { font-size: 0.85rem; } }
+
+/* THE EXAMPLES TABS — three shapes of use, one visible at a time, and still no script. Radios do the
+   state, because a radio group is a browser feature and this site keeps exactly one rule about
+   scripts: there are none. Each label is a tab; each panel is hidden until its radio is checked; the
+   arrow keys move between tabs once one has focus; printing shows all three, because a printed page
+   has no labels to press. */
+.tabin {
+  position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden;
+  clip-path: inset(50%); white-space: nowrap; border: 0;
+}
+nav.tabs {
+  display: flex; flex-wrap: wrap; gap: 0 1.4rem;
+  margin: 0 0 2.4rem; border-bottom: 1px solid var(--rule);
+}
+nav.tabs label {
+  color: var(--dim); font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 0.55rem 0 0.7rem; border-bottom: 2px solid transparent; margin-bottom: -1px;
+  cursor: pointer;
+}
+nav.tabs label:hover { color: var(--ink); }
+#tab-planning:checked ~ nav.tabs label[for="tab-planning"],
+#tab-bug:checked ~ nav.tabs label[for="tab-bug"],
+#tab-sanity:checked ~ nav.tabs label[for="tab-health"] {
+  color: var(--ink); border-bottom-color: var(--accent);
+}
+#tab-planning:focus-visible ~ nav.tabs label[for="tab-planning"],
+#tab-bug:focus-visible ~ nav.tabs label[for="tab-bug"],
+#tab-sanity:focus-visible ~ nav.tabs label[for="tab-health"] {
+  outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px;
+}
+.panel { display: none; }
+#tab-planning:checked ~ #panel-planning,
+#tab-bug:checked ~ #panel-bug,
+#tab-sanity:checked ~ #panel-sanity { display: block; }
+@media print {
+  .panel { display: block; }
+  nav.tabs, .tabin { display: none; }
+}
+
+/* A tool name is a proper noun of the product wherever it appears in a sentence — bold and in the
+   accent, the same treatment the front page gives the list of tools. Never applied to anything that
+   is not a tool name: an error code is not a product. */
+code.tool { color: var(--accent); font-weight: 650; text-transform: none; }
+
+/* The episodes inside a tab: smaller than the panel's opening line, larger than body text. */
+h3 { font-size: 1.02rem; font-weight: 650; line-height: 1.35; margin: 2.4rem 0 0.9rem; }
+
+/* The long testimony is a disclosure: a reader can stop after thirty seconds, or open it. */
+details.card > summary {
+  cursor: pointer; color: var(--dim); font-size: 0.78rem; letter-spacing: 0.14em;
+  text-transform: uppercase; font-weight: 650; list-style-position: outside;
+}
+details.card > summary:hover { color: var(--ink); }
+details.card[open] > summary { margin: 0 0 1.1rem; }
+section[id] { scroll-margin-top: 1rem; }
